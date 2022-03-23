@@ -1,6 +1,5 @@
 import { Context, createContext, useState } from 'react'
-import { DocumentData, getDocs } from 'firebase/firestore/lite'
-import { v4 as uuidv4 } from 'uuid'
+import { getDocs } from 'firebase/firestore/lite'
 
 import { Bike } from '../interfaces/bike.interface'
 
@@ -42,16 +41,17 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const getBikes = async () => {
     setLoading(true)
 
-    const snapshot = await getDocs(bikesCollection)
-    const data = snapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: uuidv4(),
-    }))
+    // const snapshot = await getDocs(bikesCollection)
+    // const data = snapshot.docs.map((doc) => ({
+    //   id: doc.id,
+    //   ...doc.data(),
+    // }))
 
-    setBikes(data as Bike[])
-
-    // setBikes([...BIKES_MOCK])
-    setLoading(false)
+    // setBikes(data as Bike[])
+    setTimeout(() => {
+      setBikes([...BIKES_MOCK])
+      setLoading(false)
+    }, 1500)
   }
 
   const addToShoppingCart = (item: Bike | ShoppingCartItemInterface) => {

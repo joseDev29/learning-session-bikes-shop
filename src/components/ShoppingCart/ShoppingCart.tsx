@@ -1,14 +1,13 @@
 import { ReactElement, useContext, useState } from 'react'
-
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Typography from '@mui/material/Typography'
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined'
+
 import { DataContext } from '../../context/DataProvider'
 import { DataContextValue } from '../../interfaces/data-context.interface'
 import { ShoppingCartItem } from '../ShoppingCartItem/ShoppingCartItem'
-import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined'
-import ElectricBikeOutlinedIcon from '@mui/icons-material/ElectricBikeOutlined'
+import { EmptyShoppingCart } from '../EmptyShoppingCart/EmptyShoppingCart'
 
 interface Props {
   extra?: ReactElement
@@ -88,24 +87,7 @@ export const ShoppingCart = ({ extra, closeDrawer }: Props) => {
           </Box>
         </>
       ) : (
-        <Box
-          display='flex'
-          height='calc(100vh - 72px)'
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
-          paddingX={4}
-        >
-          <ElectricBikeOutlinedIcon style={{ fontSize: 100 }} />
-          <Typography
-            variant='h6'
-            fontWeight='bold'
-            textAlign='center'
-            marginTop={2}
-          >
-            You have not added any products to your cart yet
-          </Typography>
-        </Box>
+        <EmptyShoppingCart />
       )}
     </Box>
   )
